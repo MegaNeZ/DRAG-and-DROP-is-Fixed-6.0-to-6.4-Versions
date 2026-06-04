@@ -6,29 +6,34 @@ public static class FixHierarchyDrop
 {
     static FixHierarchyDrop()
     {
-        // Monitora o evento global de arrastar e soltar no editor
+        // Monitors the global hierarchy change event in the editor
         EditorApplication.hierarchyChanged += OnHierarchyChanged;
     }
 
     private static void OnHierarchyChanged()
     {
-        // Se houver um objeto sendo arrastado e o mouse for solto
+        // Checks if there are objects being dragged and if the mouse button was released (DragPerform)
         if (DragAndDrop.objectReferences.Length > 0 && Event.current != null && Event.current.type == EventType.DragPerform)
         {
+            // Tells the editor that the drag operation is accepted
             DragAndDrop.AcceptDrag();
             
             foreach (var obj in DragAndDrop.objectReferences)
             {
                 if (obj is GameObject prefab)
                 {
-                    // Instancia o prefab de forma limpa na cena atual
+                    // Safely instantiates the prefab into the current active scene
                     GameObject instantiated = (GameObject)PrefabUtility.InstantiatePrefab(prefab);
+                    
+                    // Registers the action in the Undo system so Ctrl+Z works properly
                     Undo.RegisterCreatedObjectUndo(instantiated, "Fix Drag Drop");
+                    
+                    // Automatically selects the newly created object in the scene
                     Selection.activeObject = instantiated;
                 }
             }
             
-            // Avisa o editor que o evento foi tratado para não disparar o bug interno
+            // Consumes the event to prevent Unity's broken native code from triggering the casting bug
             Event.current.Use();
         }
     }
