@@ -11,7 +11,7 @@ Since the bug is hardcoded inside Unity's native DLLs, this script creates a glo
 1. Inside your Unity Project window, look for an existing folder named **`Editor`**. If you don't have one, right-click inside `Assets` and create a new folder named exactly **`Editor`**.
 2. Go inside that `Editor` folder.
 3. Right-click, select **Create > C# Script**, and name it exactly **`FixHierarchyDrop.cs`**.
-4. Open the script, delete all the default template code, and paste the open-source code provided above.
+4. Open the script, delete all the default template code, and paste the open-source code provided.
 5. Save the file (**Ctrl + S**), return to Unity, clear your console, and you're good to go!
 Just copy and paste the code below directly into your project:
 
