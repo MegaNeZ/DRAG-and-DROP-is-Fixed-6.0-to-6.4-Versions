@@ -1,4 +1,4 @@
-# Unity 6.0 to 6.4 or above Hierarchy Drag and Drop Bug Fix
+# Unity 6.0 to 6.4 or above, Hierarchy Drag and Drop Bug Fix
 A lightweight Unity 6 editor script that fixes the broken Hierarchy drag-and-drop bug caused by the native System.UInt64 to System.Int32 casting exception.
 ## The Problem
 When dragging assets or prefabs into the Hierarchy in certain Unity 6 builds, the editor throws a persistent casting error and completely blocks the operation:
